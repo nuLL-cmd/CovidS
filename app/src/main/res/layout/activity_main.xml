@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark2"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:id="@+id/appBar_main"
+            android:layout_height="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent2"
+                app:title="@string/app_name"
+                app:titleTextColor="#fff">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_pie_chart_black_24dp" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    <TextView
+        android:id="@+id/lbl_resumo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBar_main"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginStart="20dp"
+        android:textColor="#fff"
+        android:text="Global:"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        app:backgroundTint="@color/colorAccent2"
+        android:src="@drawable/ic_refresh_white_24dp"
+        android:backgroundTint="@color/colorPrimaryDark2"
+        app:borderWidth="7dp"
+
+        android:layout_marginTop="25dp"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/relativeInfo_main"
+        android:layout_width="match_parent"
+        android:layout_below="@id/appBar_main"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="150dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeProgress_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progressDetails_main"
+                style="@style/SpinKitView.Circle"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                app:SpinKit_Color="#fff" />
+
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_total"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="10dp"
+            android:visibility="gone"
+            android:elevation="5dp"
+            android:layout_height="150dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:background="@color/colorAccent2"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/lblTotalCases_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmados:"
+                    android:textColor="#B8B4B4"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtTotalCases_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:text="232636"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:background="@drawable/gb_txt_cases"
+                    android:layout_toEndOf="@id/lblTotalCases_main"
+                    android:layout_marginStart="30dp"
+                    android:textAlignment="center"
+                    android:layout_alignTop="@id/lblTotalCases_main"
+                    android:layout_alignBottom="@id/lblTotalCases_main"
+                    android:gravity="center_horizontal" />
+
+
+                <TextView
+                    android:id="@+id/lblTotalDeaths_main"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/txtTotalCases_main"
+                    android:layout_height="wrap_content"
+                    android:text="Fatais:"
+                    android:textColor="#B8B4B4"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtTotalDeaths_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="232636"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/gb_txt_deths"
+                    android:textSize="12sp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:layout_toEndOf="@id/lblTotalDeaths_main"
+                    android:layout_alignTop="@id/lblTotalDeaths_main"
+                    android:layout_alignBottom="@id/lblTotalDeaths_main"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="30dp" />
+
+
+                <TextView
+                    android:id="@+id/lblTotalRecover_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recuperados:"
+                    android:textColor="#B8B4B4"
+                    android:layout_below="@id/txtTotalDeaths_main"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtTotalRecover_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="232636"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:background="@drawable/gb_txt_recover"
+                    android:textSize="12sp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:layout_toEndOf="@id/lblTotalRecover_main"
+                    android:layout_marginStart="30dp"
+                    android:layout_alignBottom="@id/lblTotalRecover_main"
+                    android:layout_alignTop="@id/lblTotalRecover_main"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/lblConsulta_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dt/ consulta:"
+                    android:textColor="#B8B4B4"
+                    android:layout_below="@id/lblTotalRecover_main"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtDate_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="04 nov 2020 18:00"
+                    android:textColor="@color/colorAccent2"
+                    android:textStyle="bold"
+                    android:background="@drawable/gb_txt_date"
+                    android:textSize="12sp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:layout_toEndOf="@id/lblConsulta_main"
+                    android:layout_marginStart="30dp"
+                    android:layout_alignBottom="@id/lblConsulta_main"
+                    android:layout_alignTop="@id/lblConsulta_main"
+                    android:gravity="center"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lbl_grafico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeInfo_main"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginStart="20dp"
+        android:textColor="#fff"
+        android:text="Estatisticas (Filtro):"/>
+
+    <TextView
+        android:id="@+id/lblInstru_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="11sp"
+        android:layout_toEndOf="@id/lbl_grafico"
+        android:layout_alignTop="@id/lbl_grafico"
+
+        android:gravity="center"
+        android:text="Use o filtro para\numa consulta específíca"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPers_main"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:layout_below="@id/lbl_grafico"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent2"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linear_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_0"
+                    android:layout_height="30dp"
+                    android:layout_width="60dp"
+                    android:onClick="showFilter"
+                    android:text="Europa"
+                    android:layout_marginStart="5dp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_europa"/>
+
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_1"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:layout_toEndOf="@id/btn_0"
+                    android:text="NA"
+                    android:textStyle="bold"
+                    android:layout_marginStart="6dp"
+                    android:textColor="#FFF"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_america"/>
+
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:text="NS"
+                    android:textStyle="bold"
+                    android:layout_marginStart="6dp"
+                    android:textColor="#FFF"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_america"/>
+
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_3"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:text="Asia"
+                    android:textStyle="bold"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@color/colorAccent2"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_asia"/>
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_4"
+                    android:layout_height="30dp"
+                    android:layout_width="60dp"
+                    android:text="Oceânia"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_marginStart="6dp"
+                    android:textColor="#fff"
+                    android:background="@drawable/bg_button_oceania"/>
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_5"
+                    android:layout_height="30dp"
+                    android:layout_width="50dp"
+                    android:text="Africa"
+                    android:textStyle="bold"
+                    android:layout_marginStart="6dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:background="@drawable/bg_button_africa"/>
+                <Button
+                    android:textSize="12sp"
+                    android:id="@+id/btn_6"
+                    android:onClick="showFilter"
+                    android:layout_height="30dp"
+                    android:layout_width="50dp"
+                    android:text="Todos"
+                    android:textStyle="bold"
+                    android:layout_marginStart="6dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:background="@drawable/bg_button_todos"/>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/lblLoren_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:layout_below="@id/cardPers_main"
+        android:text="Listando apenas os casos fatais >= 100\nPara selecionar todos os dados\n selecione a opção correta acima"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_chart"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        android:layout_below="@id/lblLoren_main"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent2"
+            android:padding="5dp"
+            android:layout_height="match_parent">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeProgressChart_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:background="@color/colorAccent2">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progressChart_details"
+                style="@style/SpinKitView.Circle"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_above="@id/txtProgress_details"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent2"
+                app:SpinKit_Color="#fff" />
+
+            <TextView
+                android:id="@+id/txtProgress_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Carregando gráfico"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"/>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
