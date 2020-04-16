@@ -326,6 +326,7 @@
                     android:textSize="12sp"
                     android:id="@+id/btn_3"
                     android:layout_width="40dp"
+                    android:onClick="showFilter"
                     android:layout_height="30dp"
                     android:text="Asia"
                     android:textStyle="bold"
