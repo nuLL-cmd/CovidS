@@ -16,6 +16,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:onClick="refreshData"
                 android:background="@color/colorAccent2"
                 app:title="@string/app_name"
                 app:titleTextColor="#fff">
@@ -302,6 +303,7 @@
                     android:id="@+id/btn_1"
                     android:layout_height="30dp"
                     android:layout_width="30dp"
+                    android:onClick="showFilter"
                     android:layout_toEndOf="@id/btn_0"
                     android:text="NA"
                     android:textStyle="bold"
@@ -315,6 +317,7 @@
                     android:id="@+id/btn_2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:onClick="showFilter"
                     android:text="NS"
                     android:textStyle="bold"
                     android:layout_marginStart="6dp"
@@ -337,6 +340,7 @@
                 <Button
                     android:textSize="12sp"
                     android:id="@+id/btn_4"
+                    android:onClick="showFilter"
                     android:layout_height="30dp"
                     android:layout_width="60dp"
                     android:text="Oceânia"
@@ -349,6 +353,7 @@
                     android:textSize="12sp"
                     android:id="@+id/btn_5"
                     android:layout_height="30dp"
+                    android:onClick="showFilter"
                     android:layout_width="50dp"
                     android:text="Africa"
                     android:textStyle="bold"
