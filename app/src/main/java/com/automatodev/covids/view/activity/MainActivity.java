@@ -16,6 +16,7 @@ import com.automatodev.covids.controller.callback.AllCallback;
 import com.automatodev.covids.controller.callback.SingleCallback;
 import com.automatodev.covids.controller.service.CovidService;
 import com.automatodev.covids.model.entity.Covid;
+import com.automatodev.covids.view.FormatUtils;
 import com.automatodev.covids.view.component.ChartLine;
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView card_total;
     private List<Covid> globalList;
     private ChartLine chartLine;
+    private FormatUtils utils;
     //#############
     private CovidService covidService;
     @Override
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         chart = findViewById(R.id.chart);
         relativeProgressChart_main = findViewById(R.id.relativeProgressChart_main);
         //############
+        utils  = new FormatUtils();
+        //############
         anim = AnimationUtils.loadAnimation(this, R.anim.push_right_fast);
         //#############
         chartLine = new ChartLine(MainActivity.this, chart);
@@ -63,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         covidService.serviceresultsGlobal(new SingleCallback() {
             @Override
             public void onResponse(Covid covid) {
-                txtTotalCases_main.setText(String.valueOf(covid.getCases()));
-                txtTotalDeaths_main.setText(String.valueOf(covid.getDeaths()));
-                txtTotalRecover_main.setText(String.valueOf(covid.getRecovered()));
+                txtTotalCases_main.setText(utils.decimal(covid.getCases()));
+                txtTotalDeaths_main.setText(utils.decimal(covid.getDeaths()));
+                txtTotalRecover_main.setText(utils.decimal(covid.getRecovered()));
                 //#############
                 long date = System.currentTimeMillis();
                 Locale locale = new Locale("pt", "BR");
@@ -121,6 +125,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_2:
                 break;
             case R.id.btn_3:
+                List<Covid> asiaList = new ArrayList<>();
+                String asia[] = getResources().getStringArray(R.array.asia_english);
+                for (Covid c : globalList) {
+                    for (String e : asia) {
+                        if (e.equals(c.getCountry()))
+                            asiaList.add(c);
+                    }
+                }
+                chartLine.makeGraph(asiaList, "Perspectiva: Asia - " + asiaList.size() + " Paises");
                 break;
             case R.id.btn_4:
                 break;
@@ -140,5 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 chartLine.makeGraph(covidFilter, "Perspectiva: Global");
                 break;
         }
+
     }
 }
