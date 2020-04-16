@@ -114,9 +114,121 @@
         <item>Vietnam</item>
         <item>Yemen</item>
 
+    </string-array>
 
+    <string-array name="africa_english">
+        <item>Algeria</item>
+        <item>Angola</item>
+        <item>Benin</item>
+        <item>Botswana</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+        <item>Cabo Verde</item>
+        <item>Cameroon</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Congo</item>
+        <item>Cote</item>
+        <item>Djibouti</item>
+        <item>Egypt</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+        <item>Eswatini</item>
+        <item>Ethiopia</item>
+        <item>Gabon</item>
+        <item>Gambia</item>
+        <item>Ghana</item>
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Kenya</item>
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Mali</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+        <item>Namibia</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Rwanda</item>
+        <item>Sao Tome and Principe</item>
+        <item>Senegal</item>
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Sudan</item>
+        <item>Sudan</item>
+        <item>Tanzania</item>
+        <item>Togo</item>
+        <item>Tunisia</item>
+        <item>Uganda</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+    </string-array>
 
+    <string-array name="na_english">
+        <item>Antigua and Barbuda</item>
+        <item>Bahamas</item>
+        <item>Barbados</item>
+        <item>Belize</item>
+        <item>Canada</item>
+        <item>Costa Rica</item>
+        <item>Cuba</item>
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>El Salvador</item>
+        <item>Grenada</item>
+        <item>Guatemala</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Jamaica</item>
+        <item>Mexico</item>
+        <item>Nicaragua</item>
+        <item>Panama</item>
+        <item>Saint Kitts and Nevis</item>
+        <item>Saint Lucia</item>
+        <item>St. Vincen Grenadines</item>
+        <item>Trinidad and Tobago</item>
+        <item>USA</item>
+    </string-array>
 
+    <string-array name="ns_english">
+        <item>Argentina</item>
+        <item>Bolivia</item>
+        <item>Brazil</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Ecuador</item>
+        <item>Guyana</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Suriname</item>
+        <item>Uruguay</item>
+        <item>Venezuela</item>
+    </string-array>
+
+    <string-array name="oceania_english">
+        <item>Australia</item>
+        <item>Fiji</item>
+        <item>Kiribati</item>
+        <item>Marshall Islands</item>
+        <item>Micronesia</item>
+        <item>Nauru</item>
+        <item>New Zealand</item>
+        <item>Palau</item>
+        <item>Papua New Guinea</item>
+        <item>Samoa</item>
+        <item>Solomon Islands</item>
+        <item>Tonga</item>
+        <item>Tuvalu</item>
+        <item>Vanuatu</item>
     </string-array>
 
     <string-array name="sheets">
