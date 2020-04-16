@@ -3,19 +3,19 @@ import com.automatodev.covids.controller.callback.AllCallback;
 import com.automatodev.covids.controller.callback.SingleCallback;
 import com.automatodev.covids.model.api.CovidRequest;
 import com.automatodev.covids.model.entity.Covid;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+//####################
 public class CovidService {
     private String baseUrl;
     private CovidRequest request;
     private Retrofit retrofit;
+    //####################
     public CovidService() {
         baseUrl = "https://coronavirus-19-api.herokuapp.com/";
         retrofit = new Retrofit.Builder().baseUrl(baseUrl)
@@ -23,6 +23,7 @@ public class CovidService {
                 .build();
         request = retrofit.create(CovidRequest.class);
     }
+    //####################
     public void servceResultCountries(final AllCallback callback) {
         Call<List<Covid>> call = request.allCountries();
         call.enqueue(new Callback<List<Covid>>() {
@@ -41,9 +42,8 @@ public class CovidService {
             }
         });
     }
-
+    //####################
     public void serviceresultsGlobal(final SingleCallback callback){
-
         Call<Covid> call = request.allCases();
         call.enqueue(new Callback<Covid>() {
             @Override
