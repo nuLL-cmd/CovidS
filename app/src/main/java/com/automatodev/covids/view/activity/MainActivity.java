@@ -20,10 +20,8 @@ import com.automatodev.covids.view.FormatUtils;
 import com.automatodev.covids.view.component.ChartLine;
 import com.github.mikephil.charting.charts.LineChart;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private TextView txtTotalCases_main;
     private TextView txtTotalDeaths_main;
@@ -53,17 +51,24 @@ public class MainActivity extends AppCompatActivity {
         chart = findViewById(R.id.chart);
         relativeProgressChart_main = findViewById(R.id.relativeProgressChart_main);
         //############
-        utils  = new FormatUtils();
+        utils = new FormatUtils();
         //############
         anim = AnimationUtils.loadAnimation(this, R.anim.push_right_fast);
         //#############
         chartLine = new ChartLine(MainActivity.this, chart);
         //#############
+        covidService = new CovidService();
+        //#############
         showGlobalData();
         showCountriesData();
     }
-    public void showGlobalData() {
-        covidService = new CovidService();
+
+    public void refreshData(View view){
+        if (relativeProgess_global.getVisibility() == View.GONE){
+            relativeProgess_global.setVisibility(View.VISIBLE);
+            relativeProgressChart_main.setVisibility(View.VISIBLE);
+            card_total.setVisibility(View.GONE);
+        }
         covidService.serviceresultsGlobal(new SingleCallback() {
             @Override
             public void onResponse(Covid covid) {
@@ -72,9 +77,49 @@ public class MainActivity extends AppCompatActivity {
                 txtTotalRecover_main.setText(utils.decimal(covid.getRecovered()));
                 //#############
                 long date = System.currentTimeMillis();
-                Locale locale = new Locale("pt", "BR");
-                SimpleDateFormat f = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", locale);
-                txtDate_main.setText(f.format(date));
+                txtDate_main.setText(utils.dateFormat(date));
+                //#############
+                relativeProgess_global.setVisibility(View.GONE);
+                card_total.setVisibility(View.VISIBLE);
+            }
+        });
+
+        final String sheets[] = getResources().getStringArray(R.array.sheets);
+        covidService.servceResultCountries(new AllCallback() {
+            @Override
+            public void onResponse(List<Covid> listCovid) {
+                globalList = listCovid;
+                Log.i("logx", "All: " + listCovid.toString());
+                List<Covid> covidFilter = new ArrayList<>();
+                for (Covid c : listCovid) {
+                    if (c.getDeaths() >= 100)
+                        covidFilter.add(c);
+                    for (String s : sheets) {
+                        if (s.equals(c.getCountry()))
+                            covidFilter.remove(c);
+                    }
+                }
+                chartLine.makeGraph(covidFilter, "Perspectiva: Global - Fatais >= 100");
+                relativeProgressChart_main.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this,"Dados atualizados",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    public void showGlobalData() {
+        if (relativeProgess_global.getVisibility() == View.GONE){
+            relativeProgess_global.setVisibility(View.VISIBLE);
+            card_total.clearAnimation();
+        }
+        covidService.serviceresultsGlobal(new SingleCallback() {
+            @Override
+            public void onResponse(Covid covid) {
+                txtTotalCases_main.setText(utils.decimal(covid.getCases()));
+                txtTotalDeaths_main.setText(utils.decimal(covid.getDeaths()));
+                txtTotalRecover_main.setText(utils.decimal(covid.getRecovered()));
+                //#############
+                long date = System.currentTimeMillis();
+                txtDate_main.setText(utils.dateFormat(date));
                 //#############
                 relativeProgess_global.setVisibility(View.GONE);
                 card_total.setVisibility(View.VISIBLE);
@@ -110,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
         }
         switch (view.getId()) {
             case R.id.btn_0:
-                List<Covid> europeList = new ArrayList<>();
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> europeList = new ArrayList<>();
                 String europe[] = getResources().getStringArray(R.array.europa_english);
                 for (Covid c : globalList) {
                     for (String e : europe) {
@@ -118,14 +164,87 @@ public class MainActivity extends AppCompatActivity {
                             europeList.add(c);
                     }
                 }
-                chartLine.makeGraph(europeList, "Perspectiva: Europa - " + europeList.size() + " Paises");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(europeList, "Perspectiva: Europa - " + europeList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                    ;
+                }.start();
                 break;
             case R.id.btn_1:
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> naList = new ArrayList<>();
+                String na[] = getResources().getStringArray(R.array.na_english);
+                for (Covid c : globalList) {
+                    for (String e : na) {
+                        if (e.equals(c.getCountry()))
+                            naList.add(c);
+                    }
+                }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(naList, "Perspectiva: América do Norte - " + naList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
             case R.id.btn_2:
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> nsList = new ArrayList<>();
+                String ns[] = getResources().getStringArray(R.array.ns_english);
+                for (Covid c : globalList) {
+                    for (String e : ns) {
+                        if (e.equals(c.getCountry()))
+                            nsList.add(c);
+                    }
+                }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(nsList, "Perspectiva: América do Sul - " + nsList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
             case R.id.btn_3:
-                List<Covid> asiaList = new ArrayList<>();
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> asiaList = new ArrayList<>();
                 String asia[] = getResources().getStringArray(R.array.asia_english);
                 for (Covid c : globalList) {
                     for (String e : asia) {
@@ -133,15 +252,87 @@ public class MainActivity extends AppCompatActivity {
                             asiaList.add(c);
                     }
                 }
-                chartLine.makeGraph(asiaList, "Perspectiva: Asia - " + asiaList.size() + " Paises");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(asiaList, "Perspectiva: Asia - " + asiaList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
             case R.id.btn_4:
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> oceaniaList = new ArrayList<>();
+                String oceania[] = getResources().getStringArray(R.array.oceania_english);
+                for (Covid c : globalList) {
+                    for (String e : oceania) {
+                        if (e.equals(c.getCountry()))
+                            oceaniaList.add(c);
+                    }
+                }
+                new Thread(){
+                    @Override
+                    public void run(){
+                        try {
+                            sleep(500);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(oceaniaList, "Perspectiva: Oceania - " + oceaniaList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
             case R.id.btn_5:
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> africaList = new ArrayList<>();
+                String africa[] = getResources().getStringArray(R.array.africa_english);
+                for (Covid c : globalList) {
+                    for (String e : africa) {
+                        if (e.equals(c.getCountry()))
+                            africaList.add(c);
+                    }
+                }
+                new Thread(){
+                    @Override
+                    public void run(){
+                        try {
+                            sleep(500);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(africaList, "Perspectiva: Africa - " + africaList.size() + " paises");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
             case R.id.btn_6:
+                relativeProgressChart_main.setVisibility(View.VISIBLE);
+                final List<Covid> covidFilter = new ArrayList<>();
                 String sheets[] = getResources().getStringArray(R.array.sheets);
-                List<Covid> covidFilter = new ArrayList<>();
                 for (Covid c : globalList) {
                     if (c.getDeaths() >= 0)
                         covidFilter.add(c);
@@ -150,9 +341,25 @@ public class MainActivity extends AppCompatActivity {
                             covidFilter.remove(c);
                     }
                 }
-                chartLine.makeGraph(covidFilter, "Perspectiva: Global");
+                new Thread(){
+                    @Override
+                    public void run(){
+                        try {
+                            sleep(500);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }finally {
+                            relativeProgressChart_main.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeProgressChart_main.setVisibility(View.GONE);
+                                    chartLine.makeGraph(covidFilter, "Perspectiva: Global");
+                                }
+                            });
+                        }
+                    }
+                }.start();
                 break;
         }
-
     }
 }
