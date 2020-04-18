@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                             covidFilter.remove(c);
                     }
                 }
-                chartLine.makeGraph(covidFilter, "Perspectiva: Global - Fatais >= 100");
+                chartLine.makeGraph(covidFilter, "Fatais: Global - Fatais >= 100","Confirmados");
                 relativeProgressChart_main.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this,"Dados atualizados",Toast.LENGTH_SHORT).show();
             }
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                             covidFilter.remove(c);
                     }
                 }
-                chartLine.makeGraph(covidFilter, "Perspectiva: Global - Fatais >= 100");
+                chartLine.makeGraph(covidFilter, "Fatais: Global - Fatais >= 100", "Confirmados");
                 relativeProgressChart_main.setVisibility(View.GONE);
             }
         });
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(europeList, "Perspectiva: Europa - " + europeList.size() + " paises");
+                                    chartLine.makeGraph(europeList, "Fatais: Europa - " + europeList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(naList, "Perspectiva: América do Norte - " + naList.size() + " paises");
+                                    chartLine.makeGraph(naList, "Fatais: América do Norte - " + naList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(nsList, "Perspectiva: América do Sul - " + nsList.size() + " paises");
+                                    chartLine.makeGraph(nsList, "Fatais: América do Sul - " + nsList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(asiaList, "Perspectiva: Asia - " + asiaList.size() + " paises");
+                                    chartLine.makeGraph(asiaList, "Fatais: Asia - " + asiaList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(oceaniaList, "Perspectiva: Oceania - " + oceaniaList.size() + " paises");
+                                    chartLine.makeGraph(oceaniaList, "Fatais: Oceania - " + oceaniaList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(africaList, "Perspectiva: Africa - " + africaList.size() + " paises");
+                                    chartLine.makeGraph(africaList, "Fatais: Africa - " + africaList.size() + " paises", "Confirmados");
                                 }
                             });
                         }
@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     relativeProgressChart_main.setVisibility(View.GONE);
-                                    chartLine.makeGraph(covidFilter, "Perspectiva: Global");
+                                    chartLine.makeGraph(covidFilter, "Fatais: Global", "Confirmados");
                                 }
                             });
                         }
